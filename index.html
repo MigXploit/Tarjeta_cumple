@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>">
+    <title>¡Feliz Cumpleaños!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ffc3e1 0%, #fff0f7 50%, #ffe6f0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card-container {
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+            max-width: 800px;
+            width: 100%;
+            overflow: hidden;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #ff69b4, #ffb6d9);
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header::before {
+            content: '🎉';
+            position: absolute;
+            font-size: 100px;
+            opacity: 0.1;
+            top: -20px;
+            left: -20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .card-header::after {
+            content: '🎂';
+            position: absolute;
+            font-size: 100px;
+            opacity: 0.1;
+            bottom: -20px;
+            right: -20px;
+            animation: float 3s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .card-header h1 {
+            color: white;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .card-header p {
+            color: white;
+            font-size: 1.2em;
+            font-style: italic;
+            position: relative;
+        }
+
+        .music-control {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(255, 105, 180, 0.4);
+        }
+
+        .music-control.playing {
+            animation: pulse 1s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .card-body {
+            padding: 40px 30px;
+        }
+
+        .wishes-section {
+            margin-bottom: 40px;
+        }
+
+        .wishes-section h2 {
+            color: #ff69b4;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .wishes-text {
+            background: linear-gradient(135deg, #fff0f7, #ffe6f0);
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 5px solid #ff69b4;
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #555;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.1);
+        }
+
+        .image-section {
+            text-align: center;
+        }
+
+        .image-section h3 {
+            color: #ff69b4;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .image-container {
+            background: linear-gradient(135deg, #ffe6f0, #fff0f7);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .image-placeholder {
+            color: #ffb6d9;
+            font-size: 1.1em;
+            font-style: italic;
+        }
+
+        .decorative-elements {
+            text-align: center;
+            font-size: 2em;
+            margin: 20px 0;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .card-header h1 {
+                font-size: 2em;
+            }
+
+            .card-header p {
+                font-size: 1em;
+            }
+
+            .card-body {
+                padding: 30px 20px;
+            }
+
+            .wishes-section h2 {
+                font-size: 1.5em;
+            }
+
+            .wishes-text {
+                font-size: 1em;
+                padding: 20px;
+            }
+
+            .music-control {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-header {
+                padding: 30px 20px;
+            }
+
+            .card-header h1 {
+                font-size: 1.5em;
+            }
+
+            .wishes-section h2 {
+                font-size: 1.3em;
+            }
+
+            .image-section h3 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="card-header">
+            <button class="music-control" id="musicBtn">🎵</button>
+            <h1>¡Feliz Cumpleaños!</h1>
+            <p>Que este día sea tan especial como tú</p>
+        </div>
+
+        <div class="card-body">
+            <div class="decorative-elements">✨ 🎈 🎁 🎊 ✨</div>
+
+            <div class="wishes-section">
+                <h2>Mis Deseos Para Ti</h2>
+                <div class="wishes-text">
+                    <!-- PERSONALIZA TU MENSAJE AQUÍ -->
+                    En tu día especial, quiero desearte todo lo mejor del mundo. Que todos tus planes de tu vida funcionen y tengas exito en tus estudios
+                    <br><br>
+                    Pasala bien a lado de las personas que mas quieres y que seas muy feliz este dia, que no te falte salud ni el cariño de las personas que te quieren. espero ser tu amiga, este y los siguientes años.
+                    <br><br>
+                    Gracias por ser una amiga tan maravillosa. Felicidades en tus 20 años.
+                    <br><br>
+                    Te quiere mucho: Alejandra ❤️
+                </div>
+            </div>
+
+            <div class="decorative-elements">🌟 💝 🌸 💐 🌟</div>
+
+            <div class="image-section">
+                <h3>Un Recuerdo Especial</h3>
+                <div class="image-container">
+                    <!-- INSERTA TU IMAGEN AQUÍ -->
+                    <!-- Reemplaza el src con la ruta de tu imagen -->
+                    <img src="img.jpg" alt="Foto especial">
+                    
+                </div>
+            </div>
+
+            <div class="decorative-elements">🎉 🎂 🎈 🎊 🎉</div>
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <!-- Agrega tu archivo de música aquí -->
+        <source src="music.mp4" type="audio/mpeg"> 
+    </audio>
+
+    <script>
+        const musicBtn = document.getElementById('musicBtn');
+        const bgMusic = document.getElementById('bgMusic');
+        let isPlaying = false;
+
+        musicBtn.addEventListener('click', function() {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicBtn.textContent = '🎵';
+                musicBtn.classList.remove('playing');
+            } else {
+                bgMusic.play();
+                musicBtn.textContent = '🎶';
+                musicBtn.classList.add('playing');
+            }
+            isPlaying = !isPlaying;
+        });
+    </script>
+</body>
+</html>
